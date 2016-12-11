@@ -44,7 +44,7 @@
           <component id="ae6c2" class="javax.swing.JButton" binding="insertFileButton">
             <constraints/>
             <properties>
-              <text value="&amp;Insert Text File"/>
+              <text value="&amp;Load Text File"/>
             </properties>
           </component>
         </children>

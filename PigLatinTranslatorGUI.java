@@ -79,12 +79,48 @@ public class PigLatinTranslatorGUI
                 convertUsed = false;
             }
         });
+
+        //insert text from a file
         insertFileButton.addActionListener(new ActionListener()
         {
             @Override
             public void actionPerformed(ActionEvent e)
             {
+                try
+                {
+                    Scanner userSuppliedFilename = new Scanner(System.in);
+                    System.out.println("What is the filename?  Please include the extension.  ex. MyFile.txt");
+                    String fileToBeUsed = userSuppliedFilename.nextLine();
 
+                    FileReader reader = new FileReader(fileToBeUsed);
+                    BufferedReader bufferedReader = new BufferedReader(reader);
+
+                    textAreaUserInput.setText("");
+                    String line;
+
+                    while ((line = bufferedReader.readLine()) != null)
+                    {
+                        textAreaUserInput.append(line);
+                    }
+                    reader.close();
+
+                } catch (IOException exception)
+                {
+                    exception.printStackTrace();
+                }
+
+
+
+
+
+                /*
+                String content;
+                content = new String(Files.readAllBytes(Paths.get("sample.txt")));
+
+                /*
+                System.out.println(fileToBeUsed);
+                textAreaUserInput.setText(fileToString(fileToBeUsed));
+                */
             }
         });
     }
@@ -113,12 +149,25 @@ public class PigLatinTranslatorGUI
             BufferedWriter bw = new BufferedWriter( fw );
             bw.write( text );
             bw.close( );
-            //System.out.println("Done writing to " + fileName); //For testing
         }
         catch( IOException e )
         {
             System.out.println("Error: " + e);
             e.printStackTrace( );
         }
-    } //End method stringToFile
+    }
+
+    private static String fileToString(String filename)
+    {
+        try
+        {
+            Scanner in = new Scanner(new FileReader(filename));
+            return in.toString();
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }
