@@ -1,24 +1,10 @@
-import java.util.Scanner;
 
-/**
- * Created by Deis on 12/10/2016.
- */
+import javax.swing.*;
+import java.util.Scanner;
+import java.io.*;
 
 public class PigLatinTranslator
 {
-    public static void main(String[]args)
-    {
-        System.out.println("Please enter in a sentence you would like translated to Pig Latin.");
-        Scanner input = new Scanner(System.in);
-        String stringToBeTranslated = input.nextLine();
-
-        System.out.println(stringToPigLatin(stringToBeTranslated));
-
-
-
-
-
-    }
 
     public static String stringToPigLatin(String toBeTranslated)
     {
@@ -107,9 +93,9 @@ public class PigLatinTranslator
         return completedTranslation;
     }
 
-    public static boolean endsInPunctuation(String word)
+    private static boolean endsInPunctuation(String word)
     {
-        if(word.charAt(word.length() - 1) == '!' || word.charAt(word.length() - 1) == '?' || word.charAt(word.length() - 1) == '.')
+        if(word.charAt(word.length() - 1) == '!' || word.charAt(word.length() - 1) == '?' || word.charAt(word.length() - 1) == '.' || word.charAt(word.length() - 1) == ',' || word.charAt(word.length() - 1) == ':' || word.charAt(word.length() - 1) == ';')
         {
             return true;
         }
@@ -119,7 +105,7 @@ public class PigLatinTranslator
         }
     }
 
-    public static boolean beginsWithVowel(char firstLetter)
+    private static boolean beginsWithVowel(char firstLetter)
     {
         if (firstLetter == 'a' || firstLetter == 'e' || firstLetter == 'i' || firstLetter == 'o' || firstLetter == 'u' || firstLetter == 'A' || firstLetter == 'E' || firstLetter == 'I' || firstLetter == 'O' || firstLetter == 'U')
         {
@@ -131,9 +117,9 @@ public class PigLatinTranslator
         }
     }
 
-    public static boolean beginsWithConsonantCluster(String word)
+    private static boolean beginsWithConsonantCluster(String word)
     {
-        if (word.length() > 3)
+        if (word.length() >= 3)
         {
             String firstTwoLetters = word.substring(0, 2);
             String firstThreeLetters = word.substring(0, 3);
@@ -151,7 +137,7 @@ public class PigLatinTranslator
         return false;
     }
 
-    public static String getFirstConsonantCluster(String word)
+    private static String getFirstConsonantCluster(String word)
     {
         String firstTwoLetters = word.substring(0, 2);
         String firstThreeLetters = word.substring(0, 3);
@@ -165,5 +151,4 @@ public class PigLatinTranslator
             return firstTwoLetters;
         }
     }
-
 }
